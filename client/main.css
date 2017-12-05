@@ -1,0 +1,111 @@
+body {
+  font-family: "Lato", sans-serif !important;
+  color: #372828;
+  letter-spacing: 0.03em;
+}
+
+.icon {
+  color: #a4a4a4;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #8d8d8d;
+}
+
+/*===========================
+Navbar
+=========================== */
+.navbar__container {
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0px 5% !important;
+}
+
+.navbar__items {
+  padding: 0px 5%;
+  height: 52px;
+}
+
+.navbar__item {
+  font-family: "Lato", sans-serif !important;
+  font-size: 14px;
+  height: 50px;
+  padding-top: 18px;
+  padding-bottom: 5px;
+}
+
+.navbar__icon {
+  padding-bottom: 0px;
+  height: 30px;
+}
+
+.logo {
+  margin-top: 12px;
+}
+
+.container--main {
+  display: block;
+  margin: 0px;
+  margin: auto !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 80px;
+  max-width: 2000px !important;
+}
+
+/*===========================
+Navbar
+=========================== */
+.collapse__container {
+  display: block;
+  width: 100%;
+}
+
+/*===========================
+Prompt
+=========================== */
+.prompt__container {
+  padding-top: 50px;
+}
+
+.prompt {
+  text-align: center;
+  font-size: 30px;
+}
+
+.prompt__hr {
+  background-color: #ffe5e5;
+  height: 2px;
+  outline: none;
+  border: none;
+  width: 200px;
+}
+
+.prompt__date {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #a4a4a4;
+  font-weight: 200;
+}
+
+/*===========================
+Quill
+=========================== */
+
+.quill {
+  color: #585858;
+  letter-spacing: 0.03em;
+  border: none;
+  margin-top: 50px;
+}
+.quill p,
+li {
+  font-size: 22px;
+  font-family: "Faustina", serif !important;
+}
+
+#toolbar {
+  border: none;
+}
