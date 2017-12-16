@@ -1,7 +1,140 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
 body {
-  font-family: "Lato", sans-serif !important;
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
   color: #372828;
   letter-spacing: 0.03em;
+}
+
+.link:hover {
+  background-color: none !important;
 }
 
 .icon {
@@ -13,49 +146,51 @@ body {
   color: #8d8d8d;
 }
 
+a:hover,
+a:active,
+a:focus {
+  background-color: transparent !important;
+  text-decoration: none !important;
+}
+
+button:hover,
+button:active,
+button:focus {
+  background-color: transparent !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 /*===========================
-Navbar
+Post List
 =========================== */
-.navbar__container {
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 0px 5% !important;
+.post__text:hover {
+  color: #464646 !important;
+  cursor: pointer;
 }
 
-.navbar__items {
-  padding: 0px 5%;
-  height: 52px;
+.post__buttons:nth-child(even) {
+  background-color: rgba(255, 252, 252, 1);
 }
 
-.navbar__item {
-  font-family: "Lato", sans-serif !important;
-  font-size: 14px;
-  height: 50px;
-  padding-top: 18px;
-  padding-bottom: 5px;
+.post__buttons:nth-child(odd) {
+  background-color: #fff;
 }
 
-.navbar__icon {
-  padding-bottom: 0px;
-  height: 30px;
-}
-
-.logo {
-  margin-top: 12px;
-}
-
-.container--main {
-  display: block;
-  margin: 0px;
-  margin: auto !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  padding-top: 80px;
-  max-width: 2000px !important;
-}
+/* .post__text:nth-child(even) {
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+} */
 
 /*===========================
-Navbar
+Collapse Calendar
 =========================== */
 .collapse__container {
   display: block;
@@ -63,49 +198,103 @@ Navbar
 }
 
 /*===========================
-Prompt
-=========================== */
-.prompt__container {
-  padding-top: 50px;
-}
-
-.prompt {
-  text-align: center;
-  font-size: 30px;
-}
-
-.prompt__hr {
-  background-color: #ffe5e5;
-  height: 2px;
-  outline: none;
-  border: none;
-  width: 200px;
-}
-
-.prompt__date {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #a4a4a4;
-  font-weight: 200;
-}
-
-/*===========================
 Quill
 =========================== */
-
-.quill {
-  color: #585858;
-  letter-spacing: 0.03em;
-  border: none;
-  margin-top: 50px;
+.ql-editor {
+  min-height: 80vh;
 }
+
+.ql-toolbar button {
+  width: 0.5em;
+}
+
+.ql-container,
+.ql-toolbar {
+  border: 0px solid #000 !important;
+}
+
+.ql-toolbar {
+  text-align: right;
+}
+
 .quill p,
 li {
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #6d6060;
+}
+
+::placeholder {
   font-size: 22px;
   font-family: "Faustina", serif !important;
 }
 
-#toolbar {
-  border: none;
+/*===========================
+Calendar
+=========================== */
+.calendar {
+  width: 350px;
+  max-width: 99%;
+  margin: auto;
+  font-family: "Lato", sans-serif !important;
+}
+
+.calendar__header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+.calendar__month {
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  color: #585858;
+  width: 150px;
+  padding-top: 2px;
+}
+
+.calendar__nav-icon {
+  color: #a4a4a4;
+  border: 1px solid #f2f2f2;
+  border-radius: 2px;
+  width: 32px;
+  height: 25px;
+  padding: 0px 0px 0px 0px;
+}
+
+.calendar__nav-icon:hover {
+  border: 1px solid #a4a4a4;
+  cursor: pointer;
+}
+
+.calendar__row {
+  display: flex;
+  height: 35px;
+  font-size: 14px;
+}
+
+.calendar__date {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f2f2f2;
+}
+
+.calendar__date--differentMonth {
+  font-weight: 200;
+  color: #a4a4a4;
+}
+
+.calendar__day {
+  color: #585858;
+  font-weight: 400;
+  font-size: 12px;
+  border: none !important;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

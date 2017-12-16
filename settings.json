@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL":
+        "mongodb://jotlotadmin:jotlot2017@ds135966.mlab.com:35966/jotlot"
+    }
+  }
+}

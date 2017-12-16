@@ -28,9 +28,8 @@ import PostList from "./PostList";
 import AccountsUIWrapper from "./AccountsUIWrapper.js";
 import MobileNavTop from "./MobileNavTop";
 import MobileNavBottom from "./MobileNavBottom";
-import Prompt from "./Prompt";
 
-class Home extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -67,6 +66,8 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <MobileNavTop />
+        <MobileNavBottom />
         <Container className="container--main">
           {/* <Collapse
             className="collapse__container"
@@ -78,11 +79,11 @@ class Home extends Component {
               </Col>
             </Row>
           </Collapse> */}
-
-          <Prompt
-            promptDate="Thursday, December 7, 2017"
-            prompt="What do you hope to get out of journaling?"
-          />
+          <Row className="prompt__container">
+            <Col md={{ size: 8, offset: 2 }} lg={{ size: 6, offset: 3 }}>
+              <h1 className="prompt__title">{this.state.prompt.title}</h1>
+            </Col>
+          </Row>
 
           <Row>
             <Col md={{ size: 8, offset: 2 }} lg={{ size: 6, offset: 3 }}>
@@ -106,4 +107,4 @@ export default withTracker(() => {
   return {
     posts: Posts.find({}).fetch()
   };
-})(Home);
+})(App);
