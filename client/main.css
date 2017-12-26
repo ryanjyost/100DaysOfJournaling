@@ -28,7 +28,6 @@ cite,
 code,
 del,
 dfn,
-em,
 img,
 ins,
 kbd,
@@ -105,24 +104,7 @@ nav,
 section {
   display: block;
 }
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -131,6 +113,14 @@ table {
 body {
   color: #372828;
   letter-spacing: 0.03em;
+  margin: auto !important;
+  line-height: 1;
+  max-width: 700px;
+}
+
+nav {
+  max-width: 700px;
+  margin: auto;
 }
 
 .link:hover {
@@ -163,11 +153,98 @@ button:focus {
   display: none;
 }
 
+p {
+  margin-bottom: 0px !important;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #8e7d7d;
+  line-height: 1.5;
+}
+
+/*===========================
+Loading
+=========================== */
+/* 
+.loader__img {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+} */
+
+.loader__circle {
+  -webkit-animation: borderSpin 0.5s linear infinite;
+  -moz-animation: borderSpin 0.5s linear infinite;
+  animation: borderSpin 0.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes borderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes borderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes borderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /*===========================
 Post List
 =========================== */
-.post__text:hover {
-  color: #464646 !important;
+
+.post__text p,
+.post__text li,
+.post__text ul,
+.post__text ol {
+  margin-bottom: 0px !important;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  color: #8e7d7d;
+  line-height: 1.5;
+}
+
+.post__text ul,
+.post__text ol {
+  padding-left: 30px;
+}
+
+.post:hover {
+  background-color: #fffbfb !important;
   cursor: pointer;
 }
 
@@ -190,6 +267,75 @@ Post List
 } */
 
 /*===========================
+Modal
+=========================== */
+
+.btn--close:hover {
+  background-color: #848484 !important;
+  color: #fff;
+}
+
+/*===========================
+Login
+=========================== */
+.login__container {
+  margin-top: 50px;
+}
+
+input {
+  font-family: sans-serif;
+  font-size: 16px;
+  height: 40px !important;
+}
+
+label {
+  text-transform: uppercase;
+  color: #a4a4a4;
+}
+
+input {
+  border: none !important;
+  outline: none !important;
+  border-bottom: 3px solid #f2f2f2 !important;
+  margin-bottom: 20px !important;
+}
+
+.at-form p {
+  color: #a4a4a4;
+}
+
+.at-btn {
+  color: #ffacac !important;
+  width: 100px !important;
+  background-color: #fff !important;
+  border: 2px solid #ffacac !important;
+  font-weight: 600 !important;
+}
+
+.at-btn:hover {
+  background-color: #ffacac !important;
+  width: 100px !important;
+  color: #fff !important;
+  border: 2px solid #ffacac !important;
+  font-weight: 600 !important;
+}
+
+.at-title h3 {
+  color: #ffacac;
+  font-weight: 400;
+}
+
+input::placeholder {
+  font-family: sans-serif !important;
+  font-size: 16px;
+  color: #585858;
+}
+
+.form-control {
+  font-size: 16px !important;
+}
+
+/*===========================
 Collapse Calendar
 =========================== */
 .collapse__container {
@@ -202,10 +348,17 @@ Quill
 =========================== */
 .ql-editor {
   min-height: 80vh;
+  margin-top: 10px;
+  padding-bottom: 50px;
 }
 
 .ql-toolbar button {
   width: 0.5em;
+  color: #a4a4a4;
+}
+
+.ql-toolbar button:hover {
+  color: #585858;
 }
 
 .ql-container,
@@ -214,15 +367,16 @@ Quill
 }
 
 .ql-toolbar {
-  text-align: right;
+  text-align: left;
 }
 
 .quill p,
-li {
-  font-size: 20px;
+.quill li {
+  font-size: 16px;
   letter-spacing: 0.05em;
   font-weight: 400;
-  color: #6d6060;
+  color: #585858;
+  line-height: 1.5;
 }
 
 ::placeholder {
@@ -233,27 +387,6 @@ li {
 /*===========================
 Calendar
 =========================== */
-.calendar {
-  width: 350px;
-  max-width: 99%;
-  margin: auto;
-  font-family: "Lato", sans-serif !important;
-}
-
-.calendar__header {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 5px;
-}
-
-.calendar__month {
-  display: inline-block;
-  text-align: center;
-  font-size: 16px;
-  color: #585858;
-  width: 150px;
-  padding-top: 2px;
-}
 
 .calendar__nav-icon {
   color: #a4a4a4;
@@ -267,34 +400,4 @@ Calendar
 .calendar__nav-icon:hover {
   border: 1px solid #a4a4a4;
   cursor: pointer;
-}
-
-.calendar__row {
-  display: flex;
-  height: 35px;
-  font-size: 14px;
-}
-
-.calendar__date {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #f2f2f2;
-}
-
-.calendar__date--differentMonth {
-  font-weight: 200;
-  color: #a4a4a4;
-}
-
-.calendar__day {
-  color: #585858;
-  font-weight: 400;
-  font-size: 12px;
-  border: none !important;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

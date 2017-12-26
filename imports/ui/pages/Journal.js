@@ -1,40 +1,40 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
 import Post from "../components/Post";
+import { Posts } from "../../api/posts.js";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
 
 import styles from "../styles/posts.js";
 
-export default class Journal extends Component {
+class Journal extends Component {
+  constructor(props) {
+    super(props);
+    this.renderPosts = this.renderPosts.bind(this);
+  }
+
+  renderPosts() {
+    return this.props.posts.map(post => {
+      return <Post key={post._id} text={post.text} date={post.createdAt} />;
+    });
+  }
+
   render() {
     return (
       <div>
         <ul className="postList" style={styles.ul}>
-          <Post
-            date="December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
-          <Post
-            date="December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
-          <Post
-            date="December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
-          <Post
-            date="December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
-          <Post
-            date="Friday December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
-          <Post
-            date="December 7th, 2017"
-            text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise."
-          />
+          {this.renderPosts()}
         </ul>
       </div>
     );
   }
 }
+
+export default withTracker(() => {
+  return {
+    posts: Posts.find(
+      { published: true, owner: Meteor.userId() },
+      { sort: { createdAt: -1 } }
+    ).fetch()
+  };
+})(Journal);

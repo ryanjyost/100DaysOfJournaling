@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import renderHTML from "react-render-html";
 import PostModal from "./PostModal";
+import moment from "moment";
 
 import { Row, Col } from "reactstrap";
 import styles from "../styles/posts";
@@ -24,11 +26,13 @@ export default class Post extends Component {
       <div>
         <li className="post" style={styles.li} onClick={this.toggle}>
           {this.props.date && (
-            <div style={styles.postDate}>Thursday, December 7, 2017</div>
+            <div style={styles.postDate}>
+              {moment(this.props.date).format("dddd, MMMM DD, YYYY")}
+            </div>
           )}
-          <p className="post__text" style={styles.p}>
-            {this.props.text}
-          </p>
+          <div className="post__text" style={styles.p}>
+            {renderHTML(this.props.text)}
+          </div>
         </li>
         <PostModal
           isOpen={this.state.modal}

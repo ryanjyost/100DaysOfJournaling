@@ -13,11 +13,21 @@ export default {
     fontSize: 15,
     width: "90%",
     margin: "auto",
-    padding: "10px 0px 30px 0px",
+    marginBottom: 0,
+    padding: "5px 0px 30px 0px",
     color: "#8E7D7D",
     maxHeight: 250,
     WebkitMaskImage:
       "-webkit-gradient(linear, center center, center bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))"
+  },
+
+  modalText: {
+    fontSize: 15,
+    width: "90%",
+    margin: "auto",
+    marginBottom: 0,
+    padding: "30px 0px 30px 0px",
+    color: "#585858"
   },
 
   buttonBar: {

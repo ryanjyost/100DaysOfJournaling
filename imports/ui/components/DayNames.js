@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import styles from "../styles/calendar.js";
 
 export default class DayNames extends Component {
   render() {
     return (
-      <div className="calendar__row">
-        <div className="calendar__day">Su</div>
-        <div className="calendar__day">Mo</div>
-        <div className="calendar__day">Tu</div>
-        <div className="calendar__day">We</div>
-        <div className="calendar__day">Th</div>
-        <div className="calendar__day">Fr</div>
-        <div className="calendar__day">Sa</div>
+      <div style={styles.row}>
+        <div style={styles.dayName}>Su</div>
+        <div style={styles.dayName}>Mo</div>
+        <div style={styles.dayName}>Tu</div>
+        <div style={styles.dayName}>We</div>
+        <div style={styles.dayName}>Th</div>
+        <div style={styles.dayName}>Fr</div>
+        <div style={styles.dayName}>Sa</div>
       </div>
     );
   }

@@ -9,18 +9,25 @@ import PostModal from "../components/PostModal";
 import styles from "../styles/posts.js";
 
 class PostFeed extends Component {
+  constructor(props) {
+    super(props);
+    this.renderPosts = this.renderPosts.bind(this);
+  }
+
+  renderPosts() {
+    // console.log(this.props.posts);
+    return this.props.posts.map(post => {
+      return <Post key={post._id} text={post.text} />;
+    });
+  }
+
   render() {
     return (
       <div>
         <Container style={styles.container}>
-          <div style={styles.postDate}>entries from today</div>
+          <div style={styles.postDate}>recent entries</div>
           <ul className="postList" style={styles.ul}>
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
-            <Post text="This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise. This is an example post. Some would say it's a bad post because it has no real substance or direction. But the act itself of writing, regardless of quality or purpose, is a useful exercise." />
+            {this.renderPosts()}
           </ul>
         </Container>
       </div>
@@ -30,6 +37,6 @@ class PostFeed extends Component {
 
 export default withTracker(() => {
   return {
-    posts: Posts.find({}).fetch()
+    posts: Posts.find({ published: true }, { sort: { createdAt: -1 } }).fetch()
   };
 })(PostFeed);

@@ -6,6 +6,8 @@ import FaLeft from "react-icons/lib/fa/angle-left";
 import Week from "./Week";
 import DayNames from "./DayNames";
 
+import styles from "../styles/calendar.js";
+
 export default class Calendar extends Component {
   //lots of help from Chris Harrington https://www.codementor.io/chrisharrington/building-a-calendar-using-react-js--less-css-and-font-awesome-du107z6nt
   constructor(props) {
@@ -38,7 +40,6 @@ export default class Calendar extends Component {
   }
 
   renderWeeks() {
-    //console.log(this.state.selectedDate.format("MMMM DD, YYYY"));
     let weeks = [],
       done = false,
       date = this.state.month
@@ -58,6 +59,7 @@ export default class Calendar extends Component {
           month={this.state.month.month()}
           select={this.selectDate}
           selected={this.state.selectedDate}
+          selectedDates={this.props.selectedDates}
         />
       );
       date.add(1, "w");
@@ -70,16 +72,14 @@ export default class Calendar extends Component {
 
   render() {
     return (
-      <div className="calendar">
-        <div className="calendar__header">
+      <div style={styles.calendar}>
+        <div style={styles.header}>
           <FaLeft
             className="calendar__nav-icon"
             size={20}
             onClick={this.previousMonth}
           />
-          <h6 className="calendar__month">
-            {this.state.month.format("MMMM YYYY")}
-          </h6>
+          <h6 style={styles.month}>{this.state.month.format("MMMM YYYY")}</h6>
           <FaRight
             className="calendar__nav-icon"
             size={20}

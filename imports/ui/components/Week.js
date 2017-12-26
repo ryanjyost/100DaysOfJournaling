@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import moment, { clone, add, startOf, day, month, isSame } from "moment";
+import styles from "../styles/calendar.js";
+import { includes } from "lodash";
 
 export default class Week extends Component {
   render() {
@@ -13,18 +15,28 @@ export default class Week extends Component {
         number: date.date(),
         isCurrentMonth: month === date.month(),
         isToday: date.isSame(new Date(), "day"),
-        date: date
+        date: date,
+        hasEntry: this.props.selectedDates.includes(date.format("YYYY-MM-DD"))
       };
 
+      let moreStyle = {};
+
+      if (day.hasEntry & day.isToday) {
+        moreStyle = Object.assign({}, styles.isToday, styles.hasEntry);
+      } else if (day.hasEntry) {
+        moreStyle = styles.hasEntry;
+      } else if (day.isToday) {
+        moreStyle = styles.isToday;
+        console.log(2);
+      } else if (day.isCurrentMonth) {
+        moreStyle = styles.currentMonth;
+      } else {
+        moreStyle = { backgroundColor: "#fff" };
+      }
+
+      const dateStyle = Object.assign({}, styles.date, moreStyle);
       days.push(
-        <div
-          key={date.toString()}
-          // onClick={this.props.select(day.date)}
-          className={
-            "calendar__date " +
-            (!day.isCurrentMonth ? "calendar__date--differentMonth" : "")
-          }
-        >
+        <div key={date.toString()} style={dateStyle}>
           {day.number}
         </div>
       );
@@ -32,6 +44,6 @@ export default class Week extends Component {
       date.add(1, "d");
     }
 
-    return <div className="calendar__row">{days}</div>;
+    return <div style={styles.row}>{days}</div>;
   }
 }

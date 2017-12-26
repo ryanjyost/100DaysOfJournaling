@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { Meteor } from "meteor/meteor";
 import ReactQuill from "react-quill";
-import Prompt from "../components/Prompt";
+import { Posts } from "../../api/posts.js";
+import { withTracker } from "meteor/react-meteor-data";
+import renderHTML from "react-render-html";
 
 import { Row, Col } from "reactstrap";
 import styles from "../styles/today";
 
-import "react-quill/dist/quill.bubble.css";
+import "react-quill/dist/quill.snow.css";
 import { setInterval } from "timers";
 
-export default class Today extends Component {
+class Today extends Component {
   constructor() {
     super();
     this.state = {
       publishable: false,
-      selectedDate: moment(),
       intervalId: null,
       text: "",
       placeholder: "",
+      todayHasEntry: false,
       prompt: {
         title: "What do you hope to get out of journaling?",
         date: "2017-04-19T12:59-0500"
@@ -33,14 +36,26 @@ export default class Today extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.toggleNavbar = this.toggleNavbar.bind(this);
     this.printText = this.printText.bind(this);
+    this.save = this.save.bind(this);
+    this.publish = this.publish.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.text === "") {
+    if (!this.props.todaysPost) {
       let interval = setInterval(this.printText, 30);
       this.setState({ intervalId: interval._id });
+    } else {
+      this.setState({
+        text: this.props.todaysPost.text,
+        publishable: true
+      });
+
+      if (this.props.todaysPost.published) {
+        this.setState({
+          todayHasPost: true
+        });
+      }
     }
   }
 
@@ -59,8 +74,7 @@ export default class Today extends Component {
   }
 
   printText() {
-    const target =
-      "Type your response to today's prompt here. Highlight some text to format. Or don't.";
+    const target = "Write today's journal entry here. Keep the streak alive!";
     const placeholder = this.state.placeholder;
     if (target.length - 1 === placeholder.length) {
       clearInterval(this.state.intervalId);
@@ -75,57 +89,142 @@ export default class Today extends Component {
     });
   }
 
-  toggleNavbar() {
+  save() {
+    if (this.props.todaysPost) {
+      Posts.update(
+        { _id: this.props.todaysPost._id },
+        { $set: { createdAt: moment().valueOf(), text: this.state.text } }
+      );
+    } else {
+      Posts.insert({
+        text: this.state.text,
+        createdAt: moment().valueOf(),
+        owner: Meteor.userId(),
+        published: false
+      });
+    }
+  }
+
+  publish() {
+    if (this.props.todaysPost) {
+      Posts.update(
+        { _id: this.props.todaysPost._id },
+        { $set: { createdAt: moment().valueOf(), published: true } }
+      );
+    } else {
+      Posts.insert({
+        text: this.state.text,
+        createdAt: moment().valueOf(),
+        owner: Meteor.userId(),
+        published: true
+      });
+
+      window.location.reload();
+    }
+
     this.setState({
-      collapsed: !this.state.collapsed
+      todayHasPost: true
     });
   }
 
   render() {
-    return (
-      <div>
-        <Row style={styles.rowWithBorder}>
-          <Col>
-            <h6 style={styles.prompt}>
-              What do you hope to get out of journaling?
-            </h6>
-            <div style={styles.promptBtn}>click for another random prompt</div>
-          </Col>
-        </Row>
-        <Row style={styles.row}>
-          <Col>
-            <div style={styles.postDate}>Friday, December 8, 2017</div>
-          </Col>
-        </Row>
-        <Row>
-          <Col style={styles.buttonContainer}>
-            <span style={styles.buttonLeft}>Save</span>
-            <span style={styles.saveText}>Last saved 5 minutes ago.</span>
-            <span
-              style={
-                this.state.publishable
-                  ? styles.publishButton.active
-                  : styles.publishButton.inactive
-              }
-            >
-              Publish
-            </span>
-          </Col>
-        </Row>
+    const lastSaved = this.props.todaysPost
+      ? moment(this.props.todaysPost.createdAt)
+      : null;
 
-        <Row>
-          <Col>
-            <ReactQuill
-              theme="bubble"
-              value={this.state.text}
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyUp}
-              modules={this.state.quill.modules}
-              className="quill"
-            />
-          </Col>
-        </Row>
-      </div>
-    );
+    if (this.state.todayHasPost) {
+      return (
+        <div>
+          <Row style={styles.row}>
+            <Col>
+              <h2 style={styles.h2}>
+                <strong style={styles.pink}>Major props!</strong>
+                <br /> You made a journal entry today.
+              </h2>
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col style={styles.todaysPost}>
+              <div className="post__text">
+                {renderHTML(this.props.todaysPost.text)}
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Row style={styles.rowWithBorder}>
+            <Col>
+              <h6 style={styles.prompt}>
+                What do you hope to get out of journaling?
+              </h6>
+              <div style={styles.promptBtn}>
+                click for another random prompt
+              </div>
+            </Col>
+          </Row>
+          <Row style={styles.row}>
+            <Col>
+              <div style={styles.postDate}>
+                {moment().format("dddd, MMMM DD, YYYY")}
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col style={styles.buttonContainer}>
+              <span style={styles.buttonLeft} onClick={this.save}>
+                Save
+              </span>
+
+              <span style={styles.saveText}>
+                {lastSaved ? `Last saved ${lastSaved.fromNow()}` : ""}
+              </span>
+              <span
+                style={
+                  this.state.publishable
+                    ? styles.publishButton.active
+                    : styles.publishButton.inactive
+                }
+                onClick={this.publish}
+              >
+                Publish
+              </span>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col>
+              <ReactQuill
+                theme="snow"
+                value={this.state.text}
+                onChange={this.handleChange}
+                onKeyUp={this.handleKeyUp}
+                modules={this.state.quill.modules}
+                className="quill"
+              />
+            </Col>
+          </Row>
+        </div>
+      );
+    }
   }
 }
+
+export default withTracker(() => {
+  const start = moment()
+    .startOf("day")
+    .valueOf();
+  const end = moment()
+    .endOf("day")
+    .valueOf();
+
+  return {
+    todaysPost: Posts.findOne({
+      createdAt: { $gte: start, $lt: end },
+      owner: Meteor.userId()
+    }),
+    currentUser: Meteor.user()
+  };
+})(Today);

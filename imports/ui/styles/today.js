@@ -6,12 +6,13 @@ export default {
 
   buttonLeft: {
     fontSize: 14,
-    color: "#a4a4a4"
+    color: "#a4a4a4",
+    cursor: "pointer"
   },
 
   saveText: {
     fontSize: 8,
-    padding: "6px 10px",
+    padding: "6px 0px 0px 10px",
     color: "#E0E0E0"
   },
 
@@ -63,5 +64,21 @@ export default {
     fontSize: 10,
     textAlign: "left",
     width: "100%"
+  },
+
+  h2: {
+    color: "#817171",
+    textAlign: "center",
+    padding: "10px 0px",
+    fontWeight: "400",
+    lineHeight: "1.5"
+  },
+
+  pink: {
+    color: "#FF8181"
+  },
+
+  todaysPost: {
+    paddingBottom: 100
   }
 };

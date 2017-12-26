@@ -13,20 +13,23 @@ import "./accounts-config.js";
 import "bootstrap/dist/css/bootstrap.css";
 
 import App from "../ui/layouts/App.js";
-import User from "../ui/layouts/User.js";
+import AuthorizedUser from "../ui/layouts/AuthorizedUser.js";
 import Today from "../ui/pages/Today.js";
 import Journal from "../ui/pages/Journal.js";
 import Profile from "../ui/pages/Profile.js";
 import PostFeed from "../ui/pages/PostFeed.js";
 import Login from "../ui/pages/Login.js";
+import { LoadingContainer } from "../ui/layouts/LoadingContainer.js";
+
+const loadingApp = LoadingContainer(App);
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <div>
-      <Route path="/" component={App}>
+      <Route path="/" component={loadingApp}>
         <IndexRedirect to="/me" />
         <Route path="login" component={Login} />
-        <Route path="me" component={User}>
+        <Route path="me" component={AuthorizedUser}>
           <IndexRoute component={Today} />
           <Route path="/me/journal" component={Journal} />
           <Route path="/me/profile" component={Profile} />
@@ -36,10 +39,3 @@ export const renderRoutes = () => (
     </div>
   </Router>
 );
-
-//me
-//today
-//past entries
-//calendar
-
-//them

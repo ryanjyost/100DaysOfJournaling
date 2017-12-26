@@ -16,7 +16,7 @@ export default {
   brand: {
     marginTop: 15,
     margin: "auto",
-    paddingLeft: 2
+    paddingLeft: 5
   },
 
   navToggle: {
