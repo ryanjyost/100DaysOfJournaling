@@ -158,10 +158,21 @@ p {
   font-size: 16px;
   letter-spacing: 0.05em;
   font-weight: 400;
-  color: #8e7d7d;
   line-height: 1.5;
 }
 
+textarea:active,
+textarea:focus {
+  outline: none;
+  border: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: sans-serif !important;
+  font-size: 16px;
+  color: #585858 !important;
+}
 /*===========================
 Loading
 =========================== */
@@ -244,16 +255,11 @@ Post List
 }
 
 .post:hover {
-  background-color: #fffbfb !important;
   cursor: pointer;
 }
 
-.post__buttons:nth-child(even) {
-  background-color: rgba(255, 252, 252, 1);
-}
-
-.post__buttons:nth-child(odd) {
-  background-color: #fff;
+.post__reportBtn:hover {
+  color: #848484 !important;
 }
 
 /* .post__text:nth-child(even) {
@@ -270,34 +276,30 @@ Post List
 Modal
 =========================== */
 
-.btn--close:hover {
-  background-color: #848484 !important;
-  color: #fff;
+.modal__textarea::placeholder {
+  color: #ffacac;
 }
 
 /*===========================
 Login
 =========================== */
-.login__container {
-  margin-top: 50px;
+.page__column {
+  margin-top: 70px;
 }
 
-input {
+.login__container input {
   font-family: sans-serif;
   font-size: 16px;
   height: 40px !important;
-}
-
-label {
-  text-transform: uppercase;
-  color: #a4a4a4;
-}
-
-input {
   border: none !important;
   outline: none !important;
   border-bottom: 3px solid #f2f2f2 !important;
   margin-bottom: 20px !important;
+}
+
+.login__container label {
+  text-transform: uppercase;
+  color: #a4a4a4;
 }
 
 .at-form p {
@@ -323,12 +325,6 @@ input {
 .at-title h3 {
   color: #ffacac;
   font-weight: 400;
-}
-
-input::placeholder {
-  font-family: sans-serif !important;
-  font-size: 16px;
-  color: #585858;
 }
 
 .form-control {
@@ -375,7 +371,7 @@ Quill
   font-size: 16px;
   letter-spacing: 0.05em;
   font-weight: 400;
-  color: #585858;
+  color: #615353;
   line-height: 1.5;
 }
 

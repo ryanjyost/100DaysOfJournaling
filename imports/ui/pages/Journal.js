@@ -15,7 +15,7 @@ class Journal extends Component {
 
   renderPosts() {
     return this.props.posts.map(post => {
-      return <Post key={post._id} text={post.text} date={post.createdAt} />;
+      return <Post key={post._id} post={post} date={post.createdAt} />;
     });
   }
 

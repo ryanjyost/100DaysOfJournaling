@@ -17,7 +17,7 @@ class PostFeed extends Component {
   renderPosts() {
     // console.log(this.props.posts);
     return this.props.posts.map(post => {
-      return <Post key={post._id} text={post.text} />;
+      return <Post key={post._id} post={post} />;
     });
   }
 

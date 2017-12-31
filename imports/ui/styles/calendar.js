@@ -54,15 +54,16 @@ export default {
     color: "#a4a4a4",
     borderRadius: "50%",
     margin: "1px 5px",
-    paddingTop: "1px"
+    paddingTop: "0px"
   },
 
   currentMonth: {
-    color: "#848484"
+    color: "#585858"
   },
 
   isToday: {
-    fontWeight: "700"
+    fontWeight: "700",
+    color: "#585858"
   },
 
   hasEntry: {

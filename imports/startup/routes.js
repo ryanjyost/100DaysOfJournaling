@@ -13,6 +13,7 @@ import "./accounts-config.js";
 import "bootstrap/dist/css/bootstrap.css";
 
 import App from "../ui/layouts/App.js";
+import PrivacyPolicy from "../ui/pages/PrivacyPolicy.js";
 import AuthorizedUser from "../ui/layouts/AuthorizedUser.js";
 import Today from "../ui/pages/Today.js";
 import Journal from "../ui/pages/Journal.js";
@@ -35,6 +36,7 @@ export const renderRoutes = () => (
           <Route path="/me/profile" component={Profile} />
         </Route>
         <Route path="us" component={PostFeed} />
+        <Route path="privacy-policy" component={PrivacyPolicy} />
       </Route>
     </div>
   </Router>

@@ -10,7 +10,8 @@ export default {
 
   icon: {
     color: "#dddddd",
-    marginRight: "auto"
+    marginRight: "auto",
+    cursor: "pointer"
   },
 
   brand: {
@@ -61,5 +62,22 @@ export default {
       borderRadius: "50%",
       margin: "2px 0px 2px 0px"
     }
+  },
+
+  collapse: {
+    margin: "0px 0px 0px 0px"
+  },
+
+  listGroupItem: {
+    border: "none",
+    borderBottom: "1px solid #f2f2f2",
+    borderTop: "1px solid #f2f2f2",
+    color: "#848484",
+    cursor: "pointer"
+  },
+
+  listPadding: {
+    height: 70,
+    border: "none"
   }
 };

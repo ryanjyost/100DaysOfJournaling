@@ -91,33 +91,21 @@ class Today extends Component {
 
   save() {
     if (this.props.todaysPost) {
-      Posts.update(
-        { _id: this.props.todaysPost._id },
-        { $set: { createdAt: moment().valueOf(), text: this.state.text } }
-      );
+      Meteor.call("posts.save", this.props.todaysPost._id, this.state.text);
     } else {
-      Posts.insert({
-        text: this.state.text,
-        createdAt: moment().valueOf(),
-        owner: Meteor.userId(),
-        published: false
-      });
+      Meteor.call("posts.saveNew", this.state.text);
     }
   }
 
   publish() {
     if (this.props.todaysPost) {
-      Posts.update(
-        { _id: this.props.todaysPost._id },
-        { $set: { createdAt: moment().valueOf(), published: true } }
+      Meteor.call(
+        "posts.publishSaved",
+        this.props.todaysPost._id,
+        this.state.text
       );
     } else {
-      Posts.insert({
-        text: this.state.text,
-        createdAt: moment().valueOf(),
-        owner: Meteor.userId(),
-        published: true
-      });
+      Meteor.call("posts.publishNew", this.state.text);
 
       window.location.reload();
     }

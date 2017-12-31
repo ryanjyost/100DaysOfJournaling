@@ -14,21 +14,36 @@ class Profile extends Component {
 
     let streakIsAlive = true,
       streak = 0,
-      prevDate = moment()
+      dateToCheck = moment()
         .subtract(1, "days")
         .format("YYYY-MM-DD"),
       today = moment().format("YYYY-MM-DD");
 
     const todayHasEntry = datesWithEntries.includes(today);
-    console.log(todayHasEntry);
+    if (todayHasEntry) {
+      streak++;
+    }
 
-    // while (streakIsAlive) {}
+    while (streakIsAlive) {
+      const dateHasEntry = dateToCheck === datesWithEntries[streak];
+
+      if (!dateHasEntry) {
+        streakIsAlive = false;
+      } else if (streak > 100) {
+        streakIsAlive = false;
+      } else {
+        streak++;
+        dateToCheck = moment(dateToCheck, "YYYY-MM-DD")
+          .subtract(1, "days")
+          .format("YYYY-MM-DD");
+      }
+    }
 
     return (
       <div>
         <Row style={styles.row}>
-          <h6>Current Streak</h6>
-          <h1>7</h1>
+          <h5 style={styles.h5}>Your current journaling streak</h5>
+          <h1 style={styles.h1}>{streak}</h1>
         </Row>
         <Row style={styles.row}>
           <Calendar selectedDates={datesWithEntries} />

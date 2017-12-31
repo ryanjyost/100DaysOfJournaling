@@ -60,7 +60,7 @@ export default {
 
   postDate: {
     color: "#a4a4a4",
-    fontWeight: "600",
+    fontWeight: "300",
     fontSize: 10,
     textAlign: "left",
     width: "100%"

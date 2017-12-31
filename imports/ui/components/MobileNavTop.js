@@ -14,7 +14,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  ListGroup,
+  ListGroupItem
 } from "reactstrap";
 
 import styles from "../styles/mobileNavTop";
@@ -24,8 +26,11 @@ export default class MobileNavTop extends Component {
     super();
     this.state = {
       link: null,
-      label: "me"
+      label: "me",
+      collapseIsOpen: false
     };
+
+    this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
   componentWillMount() {
@@ -52,37 +57,64 @@ export default class MobileNavTop extends Component {
     });
   }
 
+  toggleCollapse() {
+    this.setState({
+      collapseIsOpen: !this.state.collapseIsOpen
+    });
+  }
+
   render() {
     return (
-      <Navbar fixed="top" style={styles.navbar}>
-        <FaEllipses size={25} style={styles.icon} />
-        <a href="/">
-          <img
-            height="20px"
-            style={styles.brand}
-            src="/images/jotlot-logo.png"
+      <div>
+        <Navbar fixed="top" style={styles.navbar}>
+          <FaEllipses
+            onClick={this.toggleCollapse}
+            size={25}
+            style={styles.icon}
           />
-        </a>
-        <Link to={this.state.link} style={styles.navToggle}>
-          <span style={styles.toggleText}>{this.state.label}</span>
-          <div style={styles.toggleIndicators}>
-            <div
-              style={
-                this.state.label === "me"
-                  ? styles.toggleIndicators.active
-                  : styles.toggleIndicators.inactive
-              }
+          <a href="/">
+            <img
+              height="20px"
+              style={styles.brand}
+              src="/images/jotlot-logo.png"
             />
-            <div
-              style={
-                this.state.label === "me"
-                  ? styles.toggleIndicators.inactive
-                  : styles.toggleIndicators.active
-              }
-            />
-          </div>
-        </Link>
-      </Navbar>
+          </a>
+          <Link to={this.state.link} style={styles.navToggle}>
+            <span style={styles.toggleText}>{this.state.label}</span>
+            <div style={styles.toggleIndicators}>
+              <div
+                style={
+                  this.state.label === "me"
+                    ? styles.toggleIndicators.active
+                    : styles.toggleIndicators.inactive
+                }
+              />
+              <div
+                style={
+                  this.state.label === "me"
+                    ? styles.toggleIndicators.inactive
+                    : styles.toggleIndicators.active
+                }
+              />
+            </div>
+          </Link>
+        </Navbar>
+        <Collapse style={styles.collapse} isOpen={this.state.collapseIsOpen}>
+          <ListGroup style={styles.listGroup}>
+            <ListGroupItem style={styles.listPadding} />
+            <ListGroupItem style={styles.listGroupItem}>
+              How It Works
+            </ListGroupItem>
+            <ListGroupItem style={styles.listGroupItem}>
+              Terms of Use
+            </ListGroupItem>
+            <ListGroupItem style={styles.listGroupItem}>
+              <Link to={"privacy-policy"}>Privacy Policy</Link>
+            </ListGroupItem>
+            <ListGroupItem style={styles.listGroupItem}>Contact</ListGroupItem>
+          </ListGroup>
+        </Collapse>
+      </div>
     );
   }
 }

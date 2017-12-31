@@ -15,25 +15,16 @@ export default {
     margin: "auto",
     marginBottom: 0,
     padding: "5px 0px 30px 0px",
-    color: "#8E7D7D",
+    color: "#2A2424",
     maxHeight: 250,
     WebkitMaskImage:
       "-webkit-gradient(linear, center center, center bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))"
   },
 
-  modalText: {
-    fontSize: 15,
-    width: "90%",
-    margin: "auto",
-    marginBottom: 0,
-    padding: "30px 0px 30px 0px",
-    color: "#585858"
-  },
-
   buttonBar: {
     position: "absolute",
     bottom: "0",
-    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
     padding: "20px 5% 10px 5%",
     width: "100%",
     display: "flex"
@@ -42,18 +33,29 @@ export default {
   reportBtn: {
     fontSize: 10,
     backgroundColor: "transparent",
-    color: "#f2f2f2",
-    fontWeight: "700",
-    cursor: "pointer"
+    color: "#eaeaea",
+    cursor: "pointer",
+    margin: "auto"
   },
 
-  readMore: {
+  responses: {
     fontSize: 10,
     backgroundColor: "transparent",
     color: "#c4c4c4",
-    fontWeight: "700",
+    cursor: "pointer"
+  },
+
+  likes: {
+    fontSize: 10,
+    backgroundColor: "transparent",
+    color: "#c4c4c4",
     cursor: "pointer",
-    marginLeft: "auto"
+    fontSize: 12
+  },
+
+  heart: {
+    paddingLeft: 0,
+    width: 25
   },
 
   prompt: {
