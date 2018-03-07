@@ -1,89 +1,63 @@
 import React, { Component } from "react";
 import renderHTML from "react-render-html";
-import PostModal from "./PostModal";
-import FaHeartFull from "react-icons/lib/fa/heart";
-import FaHeartEmpty from "react-icons/lib/fa/heart-o";
+import PostFooter from "./PostFooter";
+import Comments from "./Comments";
+import FaClose from "react-icons/lib/md/clear";
+import Textarea from "react-textarea-autosize";
+import { Posts } from "../../api/posts.js";
+import { withTracker } from "meteor/react-meteor-data";
 import moment from "moment";
 
-import { Row, Col } from "reactstrap";
-import styles from "../styles/posts";
+import styles from "../styles/posts.js";
 
-export default class Post extends Component {
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Input
+} from "reactstrap";
+
+class Post extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modal: false,
-      hoverLikes: false,
-      liked: false
-    };
-    this.toggle = this.toggle.bind(this);
-    this.onMouseEnterLikes = this.onMouseEnterLikes.bind(this);
-    this.onMouseLeaveLikes = this.onMouseLeaveLikes.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
-  onMouseEnterLikes() {
-    if (!this.state.liked) {
-      this.setState({
-        hoverLikes: true
-      });
-    }
-  }
-
-  onMouseLeaveLikes() {
-    if (!this.state.liked) {
-      this.setState({
-        hoverLikes: false
-      });
-    }
   }
 
   render() {
+    const text = this.props.post.text;
+    const newText = text.replace("<p><br></p><p><br></p>", "");
+
     return (
       <div>
-        <li className="post" style={styles.li}>
-          {this.props.date && (
+        <ModalBody
+          style={{ ...styles.modalBody, ...{ maxWidth: 520, margin: "auto" } }}
+        >
+          <div className="modal__text" style={styles.text}>
             <div style={styles.postDate}>
-              {moment(this.props.date).format("dddd, MMMM DD, YYYY")}
+              {moment(this.props.post.createdAt).fromNow()}
             </div>
-          )}
-          <div className="post__text" style={styles.p} onClick={this.toggle}>
-            {renderHTML(this.props.post.text)}
+            {renderHTML(newText)}
           </div>
-          <div style={styles.buttonBar}>
-            <span style={styles.responses}>
-              {this.props.post.responses.length} responses
-            </span>
-            <span className="post__reportBtn" style={styles.reportBtn} />
-            <span
-              onMouseEnter={this.onMouseEnterLikes}
-              onMouseLeave={this.onMouseLeaveLikes}
-              style={styles.likes}
-            >
-              {this.props.post.likes.length}{" "}
-              {this.state.hoverLikes ? (
-                <FaHeartFull style={styles.heart} color="#ffacac" size="15px" />
-              ) : (
-                <FaHeartEmpty
-                  style={styles.heart}
-                  color="#ffacac"
-                  size="15px"
-                />
-              )}
-            </span>
-          </div>
-        </li>
-        <PostModal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          text={this.props.post.text}
-        />
+          <PostFooter post={this.props.post} />
+        </ModalBody>
+        <ModalFooter style={styles.modalFooter}>
+          <Comments
+            post={this.props.post}
+            currentUser={this.props.currentUser}
+          />
+        </ModalFooter>
       </div>
     );
   }
 }
+
+export default withTracker(props => {
+  return {
+    post: Posts.findOne({
+      // _id: new Mongo.ObjectID(1)
+      _id: props.params.id
+    }),
+    currentUser: Meteor.user()
+  };
+})(Post);

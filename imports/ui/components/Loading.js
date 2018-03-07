@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Container } from "reactstrap";
 import styles from "../styles/loading.js";
 
-export default class Prompt extends Component {
+export default class Loading extends Component {
   render() {
     return (
       <Container style={styles.container}>

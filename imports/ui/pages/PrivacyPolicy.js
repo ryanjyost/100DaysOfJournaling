@@ -12,7 +12,15 @@ export default class PrivacyPolicy extends Component {
             <br />
             <h1>Privacy Policy</h1>
             <p>
-              Jotlot operates the jotlot.io website, which provides the SERVICE.
+              <strong>TLDR:</strong> Whatever you publish on this website is on
+              the internet. Though we don't associate any identifiable
+              information with your public profile or entries, we can't
+              gaurantee your anonymity.
+            </p>
+            <br />
+            <p>
+              Ryan Yost operates the 100daysofjournaling.com website, which
+              provides the SERVICE.
             </p>
             <br />
             <p>
@@ -27,11 +35,13 @@ export default class PrivacyPolicy extends Component {
               Information that we collect are used for providing and improving
               the Service. We will not use or share your information with anyone
               except as described in this Privacy Policy.
-            </p>{" "}
+            </p>
+            <br />
             <p>
               The terms used in this Privacy Policy have the same meanings as in
-              our Terms and Conditions, which is accessible at jotlot.io ,
-              unless otherwise defined in this Privacy Policy.{" "}
+              our Terms and Conditions, which is accessible at
+              100daysofjournaling.com , unless otherwise defined in this Privacy
+              Policy.{" "}
             </p>
             <br />
             <h3>Information Collection and Use</h3>

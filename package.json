@@ -5,10 +5,13 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.40",
+    "axios": "^0.17.1",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
     "bootstrap": "^4.0.0-beta.2",
     "lodash": "^4.17.4",
+    "meteor-db-utils": "^0.1.6",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.19.3",
     "react": "^16.2.0",

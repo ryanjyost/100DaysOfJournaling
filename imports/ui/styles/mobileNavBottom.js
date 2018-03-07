@@ -1,41 +1,54 @@
 export default {
   navbar: {
-    marginTop: 40,
+    marginTop: 45,
     marginBottom: 0,
-    padding: "0px"
+    padding: "0px",
+    borderLeft: "1px solid #f2f2f2",
+    borderRight: "1px solid #f2f2f2",
+    minHeight: 35
   },
 
   nav: {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
-    flexFlow: "row nowrap",
+    //flexFlow: "row nowrap",
     height: 30
   },
 
-  navItem: {
+  navItemLeft: {
     textAlign: "center",
     flex: "1",
-    width: "32%",
     fontSize: 11,
-    border: "1px solid #f2f2f2",
+    borderTop: "1px solid #f2f2f2",
     borderBottom: "1px solid #f2f2f2",
+    borderRight: "1px solid #f2f2f2",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
+  },
 
-    active: {
-      textAlign: "center",
-      flex: "1",
-      width: "32%",
-      fontSize: 11,
-      border: "1px solid #f2f2f2",
-      borderBottom: "2px solid #FFACAC",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "500"
-    }
+  navItemRight: {
+    textAlign: "center",
+    flex: "1",
+    fontSize: 11,
+    borderTop: "1px solid #f2f2f2",
+    borderBottom: "1px solid #f2f2f2",
+    borderLeft: "1px solid #f2f2f2",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  navItemActive: {
+    textAlign: "center",
+    flex: "1",
+    fontSize: 11,
+    borderTop: "1px solid #f2f2f2",
+    borderBottom: "2px solid #FFACAC",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
 
   navLink: {

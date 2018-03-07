@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FaEllipses from "react-icons/lib/md/keyboard-control";
 import URL from "url-parse";
 import { Link } from "react-router";
+import { Meteor } from "meteor/meteor";
 // import AccountsUIWrapper from "./AccountsUIWrapper.js";
 
 import {
@@ -36,8 +37,8 @@ export default class MobileNavTop extends Component {
   componentWillMount() {
     const url = new URL(window.location.href);
     const pathname = url.pathname.slice(1);
-    const link = pathname.includes("me") ? "/us" : "/me";
-    const label = link === "/me" ? "us" : "me";
+    const link = pathname.includes("us") ? "/today" : "/us";
+    const label = link === "/us" ? "me" : "us";
 
     this.setState({
       link,
@@ -48,8 +49,8 @@ export default class MobileNavTop extends Component {
   componentWillReceiveProps() {
     const url = new URL(window.location.href);
     const pathname = url.pathname.slice(1);
-    const link = pathname.includes("me") ? "/us" : "/me";
-    const label = link === "/me" ? "us" : "me";
+    const link = pathname.includes("us") ? "/today" : "/us";
+    const label = link === "/us" ? "me" : "us";
 
     this.setState({
       link,
@@ -72,12 +73,13 @@ export default class MobileNavTop extends Component {
             size={25}
             style={styles.icon}
           />
-          <a href="/">
-            <img
+          <a style={styles.logo} href="/">
+            100DaysOfJournaling
+            {/* <img
               height="20px"
               style={styles.brand}
               src="/images/jotlot-logo.png"
-            />
+            /> */}
           </a>
           <Link to={this.state.link} style={styles.navToggle}>
             <span style={styles.toggleText}>{this.state.label}</span>
@@ -103,15 +105,25 @@ export default class MobileNavTop extends Component {
           <ListGroup style={styles.listGroup}>
             <ListGroupItem style={styles.listPadding} />
             <ListGroupItem style={styles.listGroupItem}>
-              How It Works
+              <Link to={"terms-of-service"} style={{ color: "#555555" }}>
+                Terms of Service
+              </Link>
             </ListGroupItem>
             <ListGroupItem style={styles.listGroupItem}>
-              Terms of Use
+              <Link to={"privacy-policy"} style={{ color: "#555555" }}>
+                Privacy Policy
+              </Link>
             </ListGroupItem>
             <ListGroupItem style={styles.listGroupItem}>
-              <Link to={"privacy-policy"}>Privacy Policy</Link>
+              <Link to={"contact"} style={{ color: "#555555" }}>
+                Contact
+              </Link>
             </ListGroupItem>
-            <ListGroupItem style={styles.listGroupItem}>Contact</ListGroupItem>
+            <ListGroupItem style={styles.listGroupItem}>
+              <Link to={""} onClick={() => Meteor.logout()}>
+                Logout
+              </Link>
+            </ListGroupItem>
           </ListGroup>
         </Collapse>
       </div>

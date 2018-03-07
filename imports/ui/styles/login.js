@@ -1,17 +1,27 @@
 export default {
   rowPink: {
-    backgroundColor: "#ffacac",
-    padding: "30px 0px"
-  },
-
-  rowPink2: {
-    backgroundColor: "#ffacac",
-    padding: "0px 0px 30px 0px"
+    backgroundColor: "#ffc9c9",
+    padding: "30px 5% 10px 5%"
   },
 
   rowWhite: {
-    backgroundColor: "#fff",
-    padding: "0px 2% 15px 2% "
+    background: "#fff" /* fallback for old browsers */,
+    padding: "20px 5% 20px 5%"
+  },
+
+  rowGray: {
+    background: "#FAF5FA" /* fallback for old browsers */,
+    padding: "20px 5% 20px 5%"
+  },
+
+  rowInner: {
+    width: "90%",
+    maxWidth: 400,
+    margin: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
   },
 
   h1: {
@@ -23,12 +33,53 @@ export default {
   h2: {
     textAlign: "center",
     width: "100%",
-    color: "#a4a4a4",
-    fontWeight: "200",
-    padding: "10px",
-    fontSize: 20,
+    color: "rgb(97, 86, 86)",
+    fontWeight: "400",
+    padding: "0px 10px 0px 10px",
+    fontSize: 18,
     letterSpacing: "0.03em",
     lineHeight: "1.4"
+  },
+
+  p: {
+    textAlign: "center",
+    width: "100%",
+    color: "rgb(97, 86, 86)",
+    fontWeight: "200",
+    padding: "0px 10px 0px 10px",
+    fontSize: 14,
+    letterSpacing: "0.03em",
+    lineHeight: "1.4"
+  },
+
+  link: {
+    textAlign: "center",
+    fontSize: 14,
+    width: "90%",
+    display: "block",
+    margin: "auto",
+    marginTop: 10,
+    marginBottom: 10
+  },
+
+  hr: {
+    height: 1,
+    width: "50%",
+    color: "#d8d8d8"
+  },
+
+  step: {
+    display: "flex",
+    height: 42,
+    width: 42,
+    margin: "auto",
+    marginBottom: 10,
+    marginTop: 10,
+    fontSize: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "999px",
+    fontWeight: 700
   },
 
   brand: {

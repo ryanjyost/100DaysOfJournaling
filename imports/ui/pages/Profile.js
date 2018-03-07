@@ -3,7 +3,7 @@ import { Row } from "reactstrap";
 import Calendar from "../components/Calendar";
 import { Posts } from "../../api/posts.js";
 import { withTracker } from "meteor/react-meteor-data";
-import styles from "../styles/profile";
+//import styles from "../styles/journal";
 import moment from "moment";
 
 class Profile extends Component {

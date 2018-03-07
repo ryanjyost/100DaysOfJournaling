@@ -1,24 +1,32 @@
 export default {
-  buttonContainer: {
+  buttonContainerTop: {
     display: "flex",
-    padding: "5px 30px 0px 30px"
+    padding: "10px 15px 0px 15px",
+    alignItems: "center"
+  },
+  buttonContainerBottom: {
+    display: "flex",
+    padding: "0px 15px 10px 15px"
   },
 
-  buttonLeft: {
+  saveButton: {
     fontSize: 14,
     color: "#a4a4a4",
-    cursor: "pointer"
+    cursor: "pointer",
+    marginLeft: "auto"
   },
 
   saveText: {
-    fontSize: 8,
-    padding: "6px 0px 0px 10px",
-    color: "#E0E0E0"
+    fontSize: 10,
+    padding: "6px 0px 0px 0px",
+    color: "#E0E0E0",
+    fontStyle: "italic",
+    marginLeft: "auto",
+    fontWeight: 100
   },
 
   publishButton: {
     active: {
-      marginLeft: "auto",
       fontSize: 14,
       color: "#FF8181",
       cursor: "pointer"
@@ -26,12 +34,16 @@ export default {
 
     inactive: {
       fontSize: 14,
-      marginLeft: "auto",
       color: "#E0E0E0"
     }
   },
 
-  row: { padding: "10px 15px 0px 15px" },
+  rowButtons: {
+    margin: 0,
+    padding: 0
+  },
+
+  row: { padding: "10px 0px 0px 0px", maxWidth: 600, margin: "auto" },
   rowWithBorder: {
     padding: "10px 15px 10px 15px",
     borderBottom: "1px solid #f2f2f2",
@@ -52,22 +64,22 @@ export default {
 
   promptBtn: {
     display: "block",
-    margin: "auto",
+    marginLeft: "auto",
     textAlign: "center",
     fontSize: 8,
     color: "#c4c4c4"
   },
 
   postDate: {
-    color: "#a4a4a4",
-    fontWeight: "300",
+    color: "#d8d8d8",
+    fontWeight: "400",
     fontSize: 10,
-    textAlign: "left",
-    width: "100%"
+    paddingTop: 2,
+    textAlign: "left"
   },
 
   h2: {
-    color: "#817171",
+    color: "#2A2424",
     textAlign: "center",
     padding: "10px 0px",
     fontWeight: "400",
@@ -79,6 +91,9 @@ export default {
   },
 
   todaysPost: {
-    paddingBottom: 100
+    paddingBottom: 10,
+    position: "relative",
+    paddingLeft: "5%",
+    paddingRight: "5%"
   }
 };

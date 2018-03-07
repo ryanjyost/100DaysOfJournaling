@@ -7,7 +7,7 @@ export default class User extends Component {
     return (
       <div>
         <MobileNavBottom />
-        <Container>{this.props.children}</Container>
+        <div style={{ margin: "auto" }}>{this.props.children}</div>
       </div>
     );
   }

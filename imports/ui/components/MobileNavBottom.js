@@ -35,35 +35,24 @@ export default class MobileNavBottom extends Component {
         <Nav style={styles.nav}>
           <NavItem
             style={
-              this.state.pathname === "me/journal"
-                ? styles.navItem.active
-                : styles.navItem
+              this.state.pathname === "today"
+                ? styles.navItemActive
+                : styles.navItemLeft
             }
           >
-            <Link to="/me/journal" className="link" style={styles.navLink}>
-              Journal
-            </Link>
-          </NavItem>
-          <NavItem
-            style={
-              this.state.pathname === "me"
-                ? styles.navItem.active
-                : styles.navItem
-            }
-          >
-            <Link to="/me" className="link" style={styles.navLink}>
+            <Link to="/today" className="link" style={styles.navLink}>
               Today
             </Link>
           </NavItem>
           <NavItem
             style={
-              this.state.pathname === "me/profile"
-                ? styles.navItem.active
-                : styles.navItem
+              this.state.pathname === "journal"
+                ? styles.navItemActive
+                : styles.navItemRight
             }
           >
-            <Link to="/me/profile" className="link" style={styles.navLink}>
-              Profile
+            <Link to="/journal" className="link" style={styles.navLink}>
+              Journal
             </Link>
           </NavItem>
         </Nav>

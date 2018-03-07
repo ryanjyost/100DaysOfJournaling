@@ -1,11 +1,15 @@
 export default {
   navbar: {
     height: 25,
-    width: "100%",
+    // width: "100%",
     margin: "0px !important",
     padding: "0px !important",
     justifyContent: "space-between",
-    backgroundColor: "rgba(255, 255, 255, .9)"
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    border: "1px solid #f2f2f2",
+    width: "inherit",
+    left: "0%",
+    transform: "translateX(0%)"
   },
 
   icon: {
@@ -17,7 +21,15 @@ export default {
   brand: {
     marginTop: 15,
     margin: "auto",
-    paddingLeft: 5
+    paddingLeft: 15
+  },
+
+  logo: {
+    marginTop: 15,
+    margin: "auto",
+    paddingLeft: 15,
+    color: "#FFACAC",
+    fontSize: 16
   },
 
   navToggle: {
@@ -77,7 +89,11 @@ export default {
   },
 
   listPadding: {
-    height: 70,
+    height: 50,
     border: "none"
+  },
+
+  link: {
+    color: "#848484"
   }
 };

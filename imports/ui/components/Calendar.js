@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Collapse } from "reactstrap";
 import moment, { clone, add, startOf, day, month, isSame } from "moment";
 import FaRight from "react-icons/lib/fa/angle-right";
 import FaLeft from "react-icons/lib/fa/angle-left";
@@ -14,13 +15,16 @@ export default class Calendar extends Component {
     super(props);
     this.state = {
       selectedDate: moment(),
-      month: moment()
+      month: moment(),
+      isOpen: true
     };
 
     this.previousMonth = this.previousMonth.bind(this);
     this.nextMonth = this.nextMonth.bind(this);
     this.selectDate = this.selectDate.bind(this);
     this.renderWeeks = this.renderWeeks.bind(this);
+    this.showCalendar = this.showCalendar.bind(this);
+    this.hideCalendar = this.hideCalendar.bind(this);
   }
 
   previousMonth() {
@@ -70,24 +74,49 @@ export default class Calendar extends Component {
     return weeks;
   }
 
+  showCalendar() {
+    this.setState({
+      isOpen: true
+    });
+  }
+
+  hideCalendar() {
+    this.setState({
+      isOpen: false
+    });
+  }
+
   render() {
     return (
-      <div style={styles.calendar}>
+      <div style={{ marginBottom: 20 }}>
         <div style={styles.header}>
-          <FaLeft
-            className="calendar__nav-icon"
-            size={20}
-            onClick={this.previousMonth}
-          />
-          <h6 style={styles.month}>{this.state.month.format("MMMM YYYY")}</h6>
-          <FaRight
-            className="calendar__nav-icon"
-            size={20}
-            onClick={this.nextMonth}
-          />
+          {/* this.state.isOpen ? (
+            <span onClick={this.hideCalendar} style={styles.buttonHide}>
+              hide calendar
+            </span>
+          ) : (
+            <span onClick={this.showCalendar} style={styles.buttonShow}>
+              open your calendar
+            </span>
+          )*/}
         </div>
-        <DayNames />
-        {this.renderWeeks()}
+        <Collapse isOpen={this.state.isOpen} style={styles.calendar}>
+          <div style={styles.header}>
+            <FaLeft
+              className="calendar__nav-icon"
+              size={20}
+              onClick={this.previousMonth}
+            />
+            <h6 style={styles.month}>{this.state.month.format("MMMM YYYY")}</h6>
+            <FaRight
+              className="calendar__nav-icon"
+              size={20}
+              onClick={this.nextMonth}
+            />
+          </div>
+          <DayNames />
+          {this.renderWeeks()}
+        </Collapse>
       </div>
     );
   }

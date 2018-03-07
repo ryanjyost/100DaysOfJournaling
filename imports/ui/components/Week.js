@@ -21,17 +21,16 @@ export default class Week extends Component {
 
       let moreStyle = {};
 
-      if (day.hasEntry & day.isToday) {
-        moreStyle = Object.assign({}, styles.isToday, styles.hasEntry);
-      } else if (day.hasEntry) {
-        moreStyle = styles.hasEntry;
-      } else if (day.isToday) {
+      if (day.isToday && day.hasEntry && day.isCurrentMonth) {
+        moreStyle = styles.hasEntryTodayCurrentMonth;
+      } else if (day.isCurrentMonth && day.hasEntry) {
+        moreStyle = styles.hasEntryCurrentMonth;
+      } else if (day.isToday && day.isCurrentMonth) {
         moreStyle = styles.isToday;
-        console.log(2);
       } else if (day.isCurrentMonth) {
         moreStyle = styles.currentMonth;
       } else {
-        moreStyle = { backgroundColor: "#fff" };
+        moreStyle = styles.notCurrentMonth;
       }
 
       const dateStyle = Object.assign({}, styles.date, moreStyle);

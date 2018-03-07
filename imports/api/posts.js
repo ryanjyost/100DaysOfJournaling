@@ -16,7 +16,7 @@ Meteor.methods({
       text,
       createdAt: moment().valueOf(),
       owner: this.userId,
-      responses: [],
+      comments: [],
       likes: [],
       published: false
     });
@@ -43,7 +43,7 @@ Meteor.methods({
       text,
       createdAt: moment().valueOf(),
       owner: this.userId,
-      responses: [],
+      comments: [],
       likes: [],
       published: true
     });
@@ -59,6 +59,62 @@ Meteor.methods({
       { _id: postId },
       { $set: { createdAt: moment().valueOf(), published: true } }
     );
+  },
+
+  "posts.comment"(postId, text) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Posts.update(
+      { _id: postId },
+      {
+        $push: {
+          comments: {
+            owner: this.userId,
+            createdAt: moment().valueOf(),
+            text
+          }
+        }
+      }
+    );
+
+    const user = Meteor.users.findOne({ _id: Meteor.userId() });
+    if (!user.comments) {
+      Meteor.users.update(Meteor.userId(), { $set: { comments: [postId] } });
+    } else {
+      Meteor.users.update(Meteor.userId(), { $push: { comments: postId } });
+    }
+  },
+
+  "posts.like"(postId) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Posts.update(
+      { _id: postId },
+      {
+        $push: {
+          likes: this.userId
+        }
+      }
+    );
+
+    const user = Meteor.users.findOne({ _id: Meteor.userId() });
+    if (!user.likes) {
+      Meteor.users.update(Meteor.userId(), { $set: { likes: [postId] } });
+    } else {
+      Meteor.users.update(Meteor.userId(), { $push: { likes: postId } });
+    }
+  },
+
+  "posts.delete"(postId) {
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Posts.remove(postId);
   }
 
   // 'tasks.remove'(taskId) {

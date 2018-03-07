@@ -1,20 +1,58 @@
 export default {
+  modalBody: {
+    fontSize: 16,
+    width: "95%",
+    margin: "auto",
+    marginBottom: 0,
+    padding: "20px 10px 10px 10px",
+    color: "#585858 !important",
+    borderRadius: 5
+  },
+
   container: {
-    marginTop: 60
+    padding: 0
+  },
+
+  modalFooter: {
+    backgroundColor: "#fcfcfc"
+  },
+
+  closeButtonContainer: {
+    padding: 5,
+    cursor: "pointer",
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+
+  closeButton: {},
+
+  text: {
+    // paddingBottom: 20,
+    color: "#2A2424 !important",
+    paddingBottom: 20
+  },
+
+  h4: {
+    textAlign: "center",
+    color: "#a4a4a4",
+    fontWeight: "200",
+    marginTop: 50
   },
 
   li: {
-    borderBottom: "1px solid #fafafa",
+    borderBottom: "1px solid #f2f2f2",
     overflow: "hidden",
-    position: "relative"
+    position: "relative",
+    width: "96%",
+    margin: "auto",
+    cursor: "pointer"
   },
 
   p: {
     fontSize: 15,
-    width: "90%",
-    margin: "auto",
     marginBottom: 0,
-    padding: "5px 0px 30px 0px",
+    padding: "15px 10px 30px 10px",
     color: "#2A2424",
     maxHeight: 250,
     WebkitMaskImage:
@@ -26,7 +64,7 @@ export default {
     bottom: "0",
     backgroundColor: "rgba(255, 255, 255, 0.7)",
     padding: "20px 5% 10px 5%",
-    width: "100%",
+    width: "90%",
     display: "flex"
   },
 
@@ -58,24 +96,23 @@ export default {
     width: 25
   },
 
-  prompt: {
-    color: "#6D6060",
-    fontWeight: 600,
-    lineHeight: "1.2",
-    letterSpacing: "0.05em",
-    fontSize: 16,
-    width: "90%",
-    margin: "auto"
-  },
-
   postDate: {
     color: "#c4c4c4",
     fontWeight: "400",
     fontSize: 10,
-    textAlign: "left",
+    textAlign: "right",
     width: "100%",
     margin: "auto",
-    marginTop: 10,
-    width: "90%"
+    paddingBottom: 10
+  },
+
+  recentEntries: {
+    color: "#c4c4c4",
+    fontWeight: "400",
+    fontSize: 10,
+    textAlign: "left",
+    width: "90%",
+    margin: "auto",
+    marginTop: 10
   }
 };
